@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ product.name}}</h1>
+    <div class="card" style="width: 18rem;">
+      <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+      <div class="card-body">
+          <p class="car-text">Produced By: {{product.user.username }}</p>
+          <p class="card-text">Price: ${{ product.price }}</p>
+          <button id="buy" data-id="{{product.id}}" class="btn btn-mini btn-danger glyphicon glyphicon-plus-sign" type="button">
+              {% if product.stack > 0 %}
+                Stack: {{ product.stack}}
+              {% endif %}
+          </button>
+      </div>
+    </div>
+    <a href="/products/" class="btn btn-success btn-lg">Back</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Products</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4">
+                <a href="./{{ product.id }}/">
+                    <div class="card" style="width: 18rem;">
+                      <img src="{{ product.image_url}}"  height="200"  class="card-img-top" alt="{{product.name}}">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                          <a href="{{product.user.username}}/">Provided By: {{product.user.username}}</a>
+                        <p class="card-text">Price: ${{ product.price }}</p>
+                         <button id="buy" data-id="{{product.id}}" class="btn btn-mini btn-danger glyphicon glyphicon-plus-sign" type="button">
+                              {% if product.stack > 0 %}
+                                Stack: {{ product.stack}}
+                              {% endif %}
+                          </button>
+                      </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+   <a href="./new" class="btn btn-success btn-lg">Add new Product</a>
+{% endblock %}
